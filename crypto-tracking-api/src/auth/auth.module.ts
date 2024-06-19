@@ -5,13 +5,13 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserModule } from '../user/user.module';
 import { JwtStrategy } from './jwt.strategy';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 @Module({
   imports: [
     UserModule,
-    PassportModule,
     JwtModule.register({
-      secret: 'your_jwt_secret',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '60m' },
     }),
   ],
