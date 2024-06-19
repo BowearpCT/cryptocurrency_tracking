@@ -2,30 +2,26 @@
 import { useEffect, useState } from "react";
 import { Form, Input, Button, Typography, message } from "antd";
 import useAuthStore from "@/app/stores/auth.store";
+import { useRouter } from "next/navigation";
 
 const { Title } = Typography;
 
 const Login = () => {
   const { login, status } = useAuthStore();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
       await login(values);
-      // message.success("Login successful!");
+      router.push("/portfolio");
     } catch (error) {
-      message.error("Login failed!");
+      if (error instanceof Error) message.error(error.message);
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (status === "error") {
-      message.error("Login failed!");
-    }
-  }, [status]);
 
   return (
     <div
