@@ -4,6 +4,7 @@ import { List, Typography, message, Button, Modal, Row, Col, Card } from "antd";
 import axiosInstance from "@/app/lib/axios";
 import PortfolioForm from "@/app/components/portfolioForm";
 import { truncateAddress } from "@/app/utils/formatAddress";
+import { useRouter } from "next/navigation";
 
 const { Title } = Typography;
 
@@ -17,7 +18,7 @@ interface Portfolio {
 const Portfolio: React.FC = () => {
   const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchPortfolios = async () => {
       try {
@@ -60,6 +61,9 @@ const Portfolio: React.FC = () => {
               title={portfolio.name}
               bordered={false}
               style={{ height: "100%" }}
+              onClick={() => {
+                router.push(`/portfolio/${portfolio.id}`);
+              }}
               bodyStyle={{
                 display: "flex",
                 flexDirection: "column",
