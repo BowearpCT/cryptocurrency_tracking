@@ -29,4 +29,13 @@ export class PortfolioService {
   async getPortfoliosByUser(user: User): Promise<Portfolio[]> {
     return this.portfolioRepository.find({ where: { user } });
   }
+
+  async findPortfolioByIdAndUser(
+    id: number,
+    userId: number,
+  ): Promise<Portfolio> {
+    return this.portfolioRepository.findOne({
+      where: { id, user: { id: userId } },
+    });
+  }
 }
