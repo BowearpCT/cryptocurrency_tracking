@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { Form, Input, Button, message, Select } from "antd";
 import axiosInstance from "@/app/lib/axios";
+import Portfolio from "@/app/(protected)/portfolio/page";
 
 const { Option } = Select;
 
 const networkOptions = [
-  { value: "bitcoin", label: "Bitcoin" },
-  { value: "ethereum", label: "Ethereum" },
-  { value: "binance-smart-chain", label: "Binance Smart Chain" },
-  { value: "polygon", label: "Polygon" },
+  { value: "ethereum", label: "ETH" },
+  { value: "binance-smart-chain", label: "BSC" },
   // Add more networks as needed
 ];
 
 interface PortfolioFormProps {
-  onPortfolioCreated: (portfolio: any) => void;
+  onPortfolioCreated: (portfolio: Portfolio) => void;
 }
 
 const PortfolioForm: React.FC<PortfolioFormProps> = ({
@@ -21,7 +20,11 @@ const PortfolioForm: React.FC<PortfolioFormProps> = ({
 }: PortfolioFormProps) => {
   const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: {
+    name: string;
+    cryptoNetwork: string;
+    cryptoAddress: string;
+  }) => {
     setLoading(true);
     try {
       const response = await axiosInstance.post("/portfolio/create", values);

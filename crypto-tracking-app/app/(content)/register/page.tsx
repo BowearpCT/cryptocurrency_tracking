@@ -12,7 +12,11 @@ const Register = () => {
   const [msgApi, msgContext] = message.useMessage();
   const router = useRouter();
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: {
+    username: string;
+    email: string;
+    password: string;
+  }) => {
     setLoading(true);
     try {
       await register(values);

@@ -5,5 +5,6 @@ import { walletScannerController } from './walletScanner.controller';
 @Module({
   providers: [WalletScannerService],
   controllers: [walletScannerController],
+  exports: [WalletScannerService],
 })
-export class EtherscanModule {}
+export class WalletScannerModule {}

@@ -10,6 +10,7 @@ import { Portfolio } from './model/portfolio.entity';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { PassportModule } from '@nestjs/passport';
 import { CoinGeckoModule } from './coin-gecko/coin-gecko.module';
+import { WalletScannerModule } from './walletScanner/walletScanner.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { CoinGeckoModule } from './coin-gecko/coin-gecko.module';
     AuthModule,
     PortfolioModule,
     CoinGeckoModule,
+    WalletScannerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

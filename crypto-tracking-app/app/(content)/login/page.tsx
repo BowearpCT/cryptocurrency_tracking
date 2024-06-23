@@ -11,7 +11,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     try {
       await login(values);

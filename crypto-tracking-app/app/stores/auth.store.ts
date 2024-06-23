@@ -4,7 +4,7 @@ import axios, { isAxiosError } from "axios";
 import type {} from "@redux-devtools/extension"; // required for devtools typing
 
 interface AuthState {
-  user: any;
+  user: { username: string; email: string } | null;
   token: string | null;
   status: "idle" | "loading" | "error";
   register: (userData: {
