@@ -1,12 +1,29 @@
+"use client";
+import React from "react";
+import { Typography, Button } from "antd";
+import Link from "next/link";
+
+const { Title, Paragraph } = Typography;
+
 const HeroSection = () => {
   return (
-    <div className="hero-section">
-      <h1>Track Your Cryptocurrencies</h1>
-      <p>
+    <div
+      style={{
+        padding: "5rem 1rem",
+        textAlign: "center",
+        background: "#f0f2f5",
+      }}
+    >
+      <Title level={1}>Track Your Cryptocurrencies</Title>
+      <Paragraph style={{ fontSize: "1.25rem" }}>
         Stay updated with real-time data and manage your crypto portfolio
         effectively.
-      </p>
-      <button className="button">Get Started</button>
+      </Paragraph>
+      <Link href="/dashboard">
+        <Button type="primary" size="large">
+          Get Started
+        </Button>
+      </Link>
     </div>
   );
 };
