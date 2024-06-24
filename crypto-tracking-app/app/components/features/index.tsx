@@ -1,19 +1,38 @@
+"use client";
+import React from "react";
+import { Row, Col, Card, Typography } from "antd";
+
+const { Title, Paragraph } = Typography;
+
+const features = [
+  {
+    title: "Real-Time Data",
+    description: "Get real-time updates on cryptocurrency prices.",
+  },
+  {
+    title: "Portfolio Management",
+    description: "Manage your cryptocurrency portfolio with ease.",
+  },
+  {
+    title: "Secure Transactions",
+    description: "Ensure your transactions are secure and reliable.",
+  },
+];
+
 const Features = () => {
   return (
-    <section className="features">
-      <div className="feature">
-        <h3>Real-Time Data</h3>
-        <p>Get real-time updates on cryptocurrency prices.</p>
-      </div>
-      <div className="feature">
-        <h3>Portfolio Management</h3>
-        <p>Manage your cryptocurrency portfolio with ease.</p>
-      </div>
-      <div className="feature">
-        <h3>Secure Transactions</h3>
-        <p>Ensure your transactions are secure and reliable.</p>
-      </div>
-    </section>
+    <div style={{ padding: "2rem 0" }}>
+      <Row gutter={[16, 16]} justify="center">
+        {features.map((feature, index) => (
+          <Col key={index} xs={24} sm={12} md={8}>
+            <Card>
+              <Title level={3}>{feature.title}</Title>
+              <Paragraph>{feature.description}</Paragraph>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 

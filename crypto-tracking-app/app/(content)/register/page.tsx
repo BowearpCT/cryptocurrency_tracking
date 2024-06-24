@@ -2,21 +2,28 @@
 import { useState } from "react";
 import useAuthStore from "@/app/stores/auth.store";
 import { Button, Card, Form, Input, message, Typography } from "antd";
+import { useRouter } from "next/navigation";
+import { AxiosError, AxiosResponse } from "axios";
 const { Title } = Typography;
-const { Item } = Form;
 
 const Register = () => {
   const { register, status } = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [msgApi, msgContext] = message.useMessage();
+  const router = useRouter();
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: {
+    username: string;
+    email: string;
+    password: string;
+  }) => {
     setLoading(true);
     try {
       await register(values);
       msgApi.success("Registration successful!");
+      router.push("/login");
     } catch (error) {
-      msgApi.error("Registration failed!");
+      if (error instanceof Error) msgApi.error(error.message);
     } finally {
       setLoading(false);
     }
